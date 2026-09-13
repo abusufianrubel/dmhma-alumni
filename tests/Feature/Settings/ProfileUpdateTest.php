@@ -37,7 +37,7 @@ test('profile page is displayed', function () {
 });
 
 test('profile page includes the email verification status', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile(['batch_year' => 2012])->create();
 
     $response = $this
         ->actingAs($user)
@@ -53,7 +53,10 @@ test('profile page includes the email verification status', function () {
 });
 
 test('personal profile information can be updated', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile([
+        'batch_year' => 2012,
+        'is_verified' => false,
+    ])->create();
     $originalEmail = $user->email;
 
     $response = $this
@@ -120,7 +123,14 @@ test('stored addresses are preserved when the basic information form omits them'
 });
 
 test('personal profile information must use supported values', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile([
+        'batch_year' => 2012,
+        'nickname' => null,
+        'date_of_birth' => null,
+        'gender' => null,
+        'blood_group' => null,
+        'tshirt_size' => null,
+    ])->create();
 
     $response = $this
         ->actingAs($user)
@@ -144,11 +154,17 @@ test('personal profile information must use supported values', function () {
         ])
         ->assertRedirect(route('profile.edit'));
 
-    expect($user->profile()->exists())->toBeFalse();
+    $profile = $user->profile()->firstOrFail();
+
+    expect($profile->nickname)->toBeNull()
+        ->and($profile->date_of_birth)->toBeNull()
+        ->and($profile->gender)->toBeNull()
+        ->and($profile->blood_group)->not->toBe('X+')
+        ->and($profile->tshirt_size)->toBeNull();
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile(['batch_year' => 2012])->create();
 
     $response = $this
         ->actingAs($user)
@@ -165,7 +181,7 @@ test('email verification status is unchanged when the email address is unchanged
 });
 
 test('user can delete their account', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile(['batch_year' => 2012])->create();
 
     $response = $this
         ->actingAs($user)
@@ -182,7 +198,7 @@ test('user can delete their account', function () {
 });
 
 test('correct password must be provided to delete account', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile(['batch_year' => 2012])->create();
 
     $response = $this
         ->actingAs($user)

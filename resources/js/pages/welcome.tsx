@@ -8,6 +8,7 @@ import {
     Clock3,
     Facebook,
     GraduationCap,
+    HandCoins,
     Heart,
     HeartHandshake,
     Instagram,
@@ -15,9 +16,11 @@ import {
     Mail,
     MapPin,
     Menu,
+    MessageCircle,
     Phone,
     Quote,
     Send,
+    ShieldCheck,
     Sparkles,
     UserRoundCheck,
     UsersRound,
@@ -94,6 +97,7 @@ const navigation = [
     { label: 'Community', href: '#community' },
     { label: 'Events', href: '#events' },
     { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Donation', href: '#donate' },
 ];
 
 const staticUpcomingEvents: UpcomingEvent[] = [
@@ -313,7 +317,7 @@ function BrandMark({ light = false }: { light?: boolean }) {
             </span>
             <span className="min-w-0">
                 <span
-                    className={`block text-sm font-extrabold tracking-[0.12em] uppercase ${light ? 'text-white' : 'text-brand-primary-strong'}`}
+                    className={`block text-sm font-extrabold tracking-[0.12em] uppercase ${light ? 'text-white' : 'text-brand-accent-strong'}`}
                 >
                     DMHMA
                 </span>
@@ -398,13 +402,13 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                 <div className="min-h-screen overflow-x-clip bg-brand-background text-brand-text antialiased">
                     <a
                         href="#main-content"
-                        className={`${focusRing} sr-only z-50 rounded-lg bg-white px-4 py-3 text-sm font-bold text-brand-primary shadow-xl focus:not-sr-only focus:fixed focus:top-4 focus:left-4`}
+                        className={`${focusRing} sr-only z-50 rounded-lg bg-card px-4 py-3 text-sm font-bold text-brand-accent-strong shadow-xl focus:not-sr-only focus:fixed focus:top-4 focus:left-4`}
                     >
                         Skip to main content
                     </a>
 
                     <header
-                        className={`sticky top-0 z-40 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 motion-reduce:transition-none ${hasScrolled ? 'border-b border-brand-border/70 bg-white/92 shadow-[0_8px_30px_rgba(0,24,96,0.10)] backdrop-blur-xl' : 'border-0 bg-transparent shadow-none'}`}
+                        className={`sticky top-0 z-40 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 motion-reduce:transition-none ${hasScrolled ? 'border-b border-brand-border/70 bg-card/92 shadow-[0_8px_30px_rgba(15,23,42,0.10)] backdrop-blur-xl' : 'border-0 bg-transparent shadow-none'}`}
                     >
                         <nav
                             aria-label="Primary navigation"
@@ -418,12 +422,12 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                 <BrandMark light={!hasScrolled} />
                             </Link>
 
-                            <div className="hidden items-center gap-7 lg:flex">
+                            <div className="hidden items-center gap-4 lg:flex xl:gap-7">
                                 {navigation.map((item) => (
                                     <a
                                         key={item.href}
                                         href={item.href}
-                                        className={`${focusRing} rounded text-sm font-semibold transition motion-reduce:transition-none ${hasScrolled ? 'text-brand-text-muted hover:text-brand-primary' : 'text-white/82 hover:text-white'}`}
+                                        className={`${focusRing} rounded text-sm font-semibold transition motion-reduce:transition-none ${hasScrolled ? 'text-brand-text-muted hover:text-brand-accent' : 'text-white/82 hover:text-white'}`}
                                     >
                                         {item.label}
                                     </a>
@@ -433,14 +437,14 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                             <div className="flex items-center gap-2">
                                 <Link
                                     href={auth.user ? dashboard() : login()}
-                                    className={`${focusRing} hidden min-h-10 items-center rounded-lg px-4 text-sm font-bold transition motion-reduce:transition-none sm:inline-flex ${hasScrolled ? 'text-brand-primary hover:bg-brand-surface-soft' : 'text-white hover:bg-white/12'}`}
+                                    className={`${focusRing} hidden min-h-10 items-center rounded-lg px-4 text-sm font-bold transition motion-reduce:transition-none sm:inline-flex ${hasScrolled ? 'text-brand-accent hover:bg-brand-surface-soft' : 'text-white hover:bg-white/12'}`}
                                 >
                                     {auth.user ? 'Dashboard' : 'Log in'}
                                 </Link>
                                 {!auth.user && (
                                     <Link
                                         href={register()}
-                                        className={`${focusRing} inline-flex min-h-10 items-center justify-center rounded-lg px-4 text-sm font-bold shadow-sm transition motion-reduce:transition-none ${hasScrolled ? 'bg-brand-primary text-white hover:bg-brand-primary-strong' : 'bg-white text-brand-primary hover:bg-brand-secondary'}`}
+                                        className={`${focusRing} inline-flex min-h-10 items-center justify-center rounded-lg px-4 text-sm font-bold shadow-sm transition motion-reduce:transition-none ${hasScrolled ? 'bg-primary text-primary-foreground hover:bg-sky-400' : 'bg-white text-sky-800 hover:bg-sky-50'}`}
                                     >
                                         Join the network
                                     </Link>
@@ -448,19 +452,19 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                 <details className="group relative lg:hidden">
                                     <summary
                                         aria-label="Open navigation menu"
-                                        className={`${focusRing} flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border [&::-webkit-details-marker]:hidden ${hasScrolled ? 'border-brand-border bg-white text-brand-primary' : 'border-white/25 bg-white/10 text-white backdrop-blur-md'}`}
+                                        className={`${focusRing} flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border [&::-webkit-details-marker]:hidden ${hasScrolled ? 'border-brand-border bg-card text-brand-accent' : 'border-white/25 bg-white/10 text-white backdrop-blur-md'}`}
                                     >
                                         <Menu
                                             className="size-5"
                                             aria-hidden="true"
                                         />
                                     </summary>
-                                    <div className="absolute top-13 right-0 w-56 rounded-xl border border-brand-border bg-white p-2 shadow-2xl">
+                                    <div className="absolute top-13 right-0 w-56 rounded-xl border border-brand-border bg-card p-2 shadow-2xl">
                                         {navigation.map((item) => (
                                             <a
                                                 key={item.href}
                                                 href={item.href}
-                                                className={`${focusRing} block rounded-lg px-4 py-3 text-sm font-semibold text-brand-text-muted hover:bg-brand-surface-soft hover:text-brand-primary`}
+                                                className={`${focusRing} block rounded-lg px-4 py-3 text-sm font-semibold text-brand-text-muted hover:bg-brand-surface-soft hover:text-brand-accent`}
                                             >
                                                 {item.label}
                                             </a>
@@ -471,7 +475,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                     ? dashboard()
                                                     : login()
                                             }
-                                            className={`${focusRing} mt-1 block rounded-lg px-4 py-3 text-sm font-semibold text-brand-primary hover:bg-brand-surface-soft sm:hidden`}
+                                            className={`${focusRing} mt-1 block rounded-lg px-4 py-3 text-sm font-semibold text-brand-accent hover:bg-brand-surface-soft sm:hidden`}
                                         >
                                             {auth.user
                                                 ? 'Open dashboard'
@@ -486,9 +490,9 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                     <main id="main-content" className="-mt-18">
                         <m.section
                             {...revealMotion('left', shouldReduceMotion)}
-                            className="relative isolate min-h-screen overflow-hidden bg-brand-primary-strong text-white"
+                            className="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white"
                         >
-                            <div className="absolute inset-0 -z-30 bg-[radial-gradient(circle_at_80%_20%,rgba(0,120,240,0.55),transparent_38%),linear-gradient(135deg,#00113f,#003090_55%,#001860)]" />
+                            <div className="absolute inset-0 -z-30 bg-[radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.42),transparent_38%),linear-gradient(135deg,#020617,#0f172a_55%,#082f49)]" />
                             {shouldPlayVideo && (
                                 <video
                                     autoPlay
@@ -505,13 +509,13 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                     />
                                 </video>
                             )}
-                            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,13,47,0.95)_0%,rgba(0,24,96,0.80)_48%,rgba(0,24,96,0.38)_100%)]" />
-                            <div className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(0,13,47,0.86)_0%,transparent_48%)]" />
+                            <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(2,6,23,0.96)_0%,rgba(15,23,42,0.82)_48%,rgba(8,47,73,0.42)_100%)]" />
+                            <div className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(2,6,23,0.88)_0%,transparent_48%)]" />
 
                             <div className="mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-4 pt-32 pb-14 sm:px-6 sm:pt-36 sm:pb-18 lg:px-8 lg:pt-40 lg:pb-22">
                                 <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.72fr)] lg:gap-10 xl:gap-16">
                                     <div className="max-w-4xl min-w-0">
-                                        <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-[0.16em] text-brand-secondary uppercase backdrop-blur-md">
+                                        <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-[0.16em] text-sky-100 uppercase backdrop-blur-md">
                                             <Sparkles
                                                 className="size-4"
                                                 aria-hidden="true"
@@ -536,7 +540,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                         ? dashboard()
                                                         : register()
                                                 }
-                                                className={`${focusRing} group inline-flex min-h-13 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-extrabold text-brand-primary shadow-xl transition hover:bg-brand-secondary motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                                className={`${focusRing} group inline-flex min-h-13 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-extrabold text-sky-800 shadow-xl transition hover:bg-sky-50 motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
                                             >
                                                 {auth.user
                                                     ? 'Go to your dashboard'
@@ -564,7 +568,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                             className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] border border-white/18 bg-white/6 backdrop-blur-sm"
                                             aria-hidden="true"
                                         />
-                                        <div className="relative aspect-[5612/4000] overflow-hidden rounded-[2rem] border border-white/25 bg-brand-primary-strong shadow-[0_28px_70px_rgba(0,8,38,0.4)]">
+                                        <div className="relative aspect-[5612/4000] overflow-hidden rounded-[2rem] border border-white/25 bg-slate-900 shadow-[0_28px_70px_rgba(2,6,23,0.45)]">
                                             <img
                                                 src="/storage/hero%20image.jpg"
                                                 alt="Campus building surrounded by landscaped grounds"
@@ -575,8 +579,8 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 decoding="async"
                                                 className="size-full object-cover object-center transition duration-700 ease-out motion-safe:group-hover:scale-[1.035] motion-reduce:transition-none"
                                             />
-                                            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(0,13,47,0.82)_0%,transparent_48%)]" />
-                                            <figcaption className="absolute right-4 bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/18 bg-brand-primary-strong/82 p-3 text-white shadow-lg backdrop-blur-md sm:right-5 sm:bottom-5 sm:left-5 sm:p-3.5">
+                                            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(2,6,23,0.86)_0%,transparent_48%)]" />
+                                            <figcaption className="absolute right-4 bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/18 bg-slate-950/85 p-3 text-white shadow-lg backdrop-blur-md sm:right-5 sm:bottom-5 sm:left-5 sm:p-3.5">
                                                 <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5">
                                                     <img
                                                         src="/images/dmhma-alumni-logo.png"
@@ -622,7 +626,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                             {...revealMotion('right', shouldReduceMotion, 0.04)}
                             id="about"
                             aria-labelledby="about-heading"
-                            className="relative scroll-mt-24 overflow-hidden bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+                            className="relative scroll-mt-24 overflow-hidden bg-card px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
                         >
                             <div
                                 className="pointer-events-none absolute top-0 right-0 -z-0 h-36 w-1/3 rounded-bl-[5rem] bg-brand-surface-soft/70"
@@ -653,7 +657,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                         </p>
                                         <a
                                             href="#community"
-                                            className={`${focusRing} group mt-8 inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-brand-primary/35 bg-white px-6 text-sm font-extrabold text-brand-primary shadow-sm transition hover:border-brand-primary hover:bg-brand-surface-soft motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                            className={`${focusRing} group mt-8 inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-brand-primary/50 bg-card px-6 text-sm font-extrabold text-brand-accent shadow-sm transition hover:border-brand-primary hover:bg-brand-secondary motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
                                         >
                                             Learn more about us
                                             <ArrowRight
@@ -664,7 +668,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                     </div>
 
                                     <div className="relative min-h-[31rem] motion-safe:animate-in motion-safe:delay-150 motion-safe:duration-700 motion-safe:fade-in motion-safe:slide-in-from-bottom-6 sm:min-h-[35rem]">
-                                        <figure className="absolute top-0 left-0 h-56 w-[82%] overflow-hidden rounded-3xl border-4 border-white bg-brand-surface-soft shadow-[0_22px_55px_rgba(0,24,96,0.18)] sm:h-[58%] sm:w-[72%]">
+                                        <figure className="absolute top-0 left-0 h-56 w-[82%] overflow-hidden rounded-3xl border-4 border-card bg-brand-surface-soft shadow-[0_22px_55px_rgba(15,23,42,0.18)] sm:h-[58%] sm:w-[72%]">
                                             <img
                                                 src="/storage/hero%20image.jpg"
                                                 alt="Campus building surrounded by landscaped grounds"
@@ -676,7 +680,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                             />
                                         </figure>
 
-                                        <blockquote className="absolute top-40 right-0 z-10 flex h-56 w-[58%] flex-col justify-between overflow-hidden rounded-3xl bg-brand-primary-strong p-5 text-white shadow-[0_24px_60px_rgba(0,24,96,0.25)] sm:top-[14%] sm:h-[56%] sm:w-[42%] sm:p-7">
+                                        <blockquote className="absolute top-40 right-0 z-10 flex h-56 w-[58%] flex-col justify-between overflow-hidden rounded-3xl bg-slate-900 p-5 text-white shadow-[0_24px_60px_rgba(15,23,42,0.28)] sm:top-[14%] sm:h-[56%] sm:w-[42%] sm:p-7">
                                             <Quote
                                                 className="size-9 fill-brand-accent/30 text-brand-accent"
                                                 aria-hidden="true"
@@ -696,7 +700,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                             />
                                         </blockquote>
 
-                                        <figure className="absolute bottom-0 left-0 z-20 h-44 w-[54%] rotate-[-2deg] overflow-hidden rounded-2xl border-4 border-white bg-brand-surface-soft shadow-[0_18px_45px_rgba(0,24,96,0.18)] transition duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-0 motion-reduce:transition-none sm:left-[7%] sm:h-[38%] sm:w-[48%]">
+                                        <figure className="absolute bottom-0 left-0 z-20 h-44 w-[54%] rotate-[-2deg] overflow-hidden rounded-2xl border-4 border-card bg-brand-surface-soft shadow-[0_18px_45px_rgba(15,23,42,0.18)] transition duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:rotate-0 motion-reduce:transition-none sm:left-[7%] sm:h-[38%] sm:w-[48%]">
                                             <img
                                                 src="/storage/events/events%20(1).jpg"
                                                 alt="Graduates sharing a celebratory moment"
@@ -710,7 +714,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                     </div>
                                 </div>
 
-                                <dl className="mt-14 grid overflow-hidden rounded-2xl border border-brand-border bg-white shadow-[0_14px_40px_rgba(0,48,144,0.08)] sm:grid-cols-3 lg:mt-16">
+                                <dl className="mt-14 grid overflow-hidden rounded-2xl border border-brand-border bg-card shadow-[0_14px_40px_rgba(15,23,42,0.08)] sm:grid-cols-3 lg:mt-16">
                                     {[
                                         {
                                             value: formatNumber(
@@ -741,7 +745,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 key={statistic.label}
                                                 className="group flex items-center gap-4 border-brand-border px-6 py-6 not-last:border-b sm:not-last:border-r sm:not-last:border-b-0 lg:px-8"
                                             >
-                                                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-surface-soft text-brand-primary transition group-hover:bg-brand-primary group-hover:text-white motion-reduce:transition-none">
+                                                <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-surface-soft text-brand-accent transition group-hover:bg-primary group-hover:text-primary-foreground motion-reduce:transition-none">
                                                     <Icon
                                                         className="size-6"
                                                         aria-hidden="true"
@@ -780,10 +784,10 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                         return (
                                             <article
                                                 key={feature.title}
-                                                className="group rounded-2xl border border-brand-border bg-white p-6 shadow-[0_12px_35px_rgba(0,48,144,0.06)] transition hover:border-brand-accent/50 hover:shadow-[0_18px_45px_rgba(0,48,144,0.12)] motion-safe:hover:-translate-y-1 motion-reduce:transition-none"
+                                                className="group rounded-2xl border border-brand-border bg-card p-6 shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition hover:border-brand-primary/60 hover:shadow-[0_18px_45px_rgba(14,165,233,0.12)] motion-safe:hover:-translate-y-1 motion-reduce:transition-none"
                                             >
                                                 <div className="flex items-start justify-between gap-4">
-                                                    <span className="flex size-12 items-center justify-center rounded-xl bg-brand-surface-soft text-brand-primary transition group-hover:bg-brand-primary group-hover:text-white motion-reduce:transition-none">
+                                                    <span className="flex size-12 items-center justify-center rounded-xl bg-brand-surface-soft text-brand-accent transition group-hover:bg-primary group-hover:text-primary-foreground motion-reduce:transition-none">
                                                         <Icon
                                                             className="size-6"
                                                             aria-hidden="true"
@@ -808,7 +812,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
 
                         <section
                             id="community"
-                            className="scroll-mt-24 bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+                            className="scroll-mt-24 bg-card px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
                         >
                             <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
                                 <m.div
@@ -830,7 +834,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                         className="absolute inset-0 -z-20 size-full object-cover object-center"
                                     />
                                     <div
-                                        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,22,70,0.46)_0%,rgba(0,18,61,0.84)_100%)]"
+                                        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,47,73,0.48)_0%,rgba(2,6,23,0.88)_100%)]"
                                         aria-hidden="true"
                                     />
                                     <div className="absolute top-0 right-0 size-64 translate-x-1/3 -translate-y-1/3 rounded-full bg-brand-accent/35 blur-3xl" />
@@ -876,7 +880,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 key={item}
                                                 className="flex items-start gap-3 text-sm font-semibold text-brand-text"
                                             >
-                                                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-secondary text-brand-primary">
+                                                <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-secondary text-brand-accent-strong">
                                                     <Check
                                                         className="size-4"
                                                         aria-hidden="true"
@@ -918,7 +922,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
 
                                     <a
                                         href="#updates"
-                                        className={`${focusRing} group inline-flex min-h-12 w-fit items-center justify-center gap-3 rounded-full border border-brand-primary/35 bg-white px-6 text-sm font-extrabold text-brand-primary shadow-sm transition hover:border-brand-primary hover:bg-brand-surface-soft motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                        className={`${focusRing} group inline-flex min-h-12 w-fit items-center justify-center gap-3 rounded-full border border-brand-primary/50 bg-card px-6 text-sm font-extrabold text-brand-accent shadow-sm transition hover:border-brand-primary hover:bg-brand-secondary motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
                                     >
                                         View all events
                                         <ArrowRight
@@ -933,7 +937,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                         <article
                                             key={event.id}
                                             aria-labelledby={`event-${event.id}`}
-                                            className="group flex overflow-hidden rounded-2xl border border-brand-border bg-white shadow-[0_12px_35px_rgba(0,48,144,0.06)] transition duration-300 hover:border-brand-primary/30 hover:shadow-[0_20px_50px_rgba(0,48,144,0.13)] motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:flex-col"
+                                            className="group flex overflow-hidden rounded-2xl border border-brand-border bg-card shadow-[0_12px_35px_rgba(15,23,42,0.06)] transition duration-300 hover:border-brand-primary/50 hover:shadow-[0_20px_50px_rgba(14,165,233,0.13)] motion-safe:hover:-translate-y-1 motion-reduce:transition-none md:flex-col"
                                         >
                                             <div className="relative w-32 shrink-0 overflow-hidden bg-brand-surface-soft sm:w-44 md:aspect-[16/9] md:w-full">
                                                 <img
@@ -950,7 +954,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                     aria-label={formatDate(
                                                         event.eventDate,
                                                     )}
-                                                    className="absolute top-3 left-3 flex min-w-14 flex-col items-center rounded-xl border border-white/80 bg-white/95 px-2.5 py-2 text-center shadow-lg backdrop-blur-sm"
+                                                    className="absolute top-3 left-3 flex min-w-14 flex-col items-center rounded-xl border border-card/80 bg-card/95 px-2.5 py-2 text-center shadow-lg backdrop-blur-sm"
                                                 >
                                                     <span className="font-serif text-2xl leading-none font-extrabold text-brand-primary-strong">
                                                         {formatEventDay(
@@ -976,7 +980,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                     <div className="mt-4 grid gap-3 text-sm text-brand-text-muted">
                                                         <p className="flex items-start gap-2">
                                                             <Clock3
-                                                                className="mt-0.5 size-4 shrink-0 text-brand-primary"
+                                                                className="mt-0.5 size-4 shrink-0 text-brand-accent"
                                                                 aria-hidden="true"
                                                             />
                                                             <span>
@@ -999,7 +1003,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                         </p>
                                                         <p className="flex items-start gap-2">
                                                             <MapPin
-                                                                className="mt-0.5 size-4 shrink-0 text-brand-primary"
+                                                                className="mt-0.5 size-4 shrink-0 text-brand-accent"
                                                                 aria-hidden="true"
                                                             />
                                                             <span className="leading-5">
@@ -1016,7 +1020,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                             : register()
                                                     }
                                                     aria-label={`Register for ${event.title}`}
-                                                    className={`${focusRing} group/action flex min-h-13 items-center justify-between gap-3 border-t border-brand-border px-5 text-sm font-extrabold text-brand-primary transition hover:bg-brand-surface-soft motion-reduce:transition-none sm:px-6`}
+                                                    className={`${focusRing} group/action flex min-h-13 items-center justify-between gap-3 border-t border-brand-border px-5 text-sm font-extrabold text-brand-accent transition hover:bg-brand-surface-soft motion-reduce:transition-none sm:px-6`}
                                                 >
                                                     Register now
                                                     <ArrowRight
@@ -1044,7 +1048,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                 />
 
                                 <div className="mt-12 grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-                                    <article className="group relative min-h-[26rem] overflow-hidden rounded-3xl bg-brand-primary-strong p-7 text-white shadow-xl sm:p-10">
+                                    <article className="group relative min-h-[26rem] overflow-hidden rounded-3xl bg-slate-950 p-7 text-white shadow-xl sm:p-10">
                                         {nextEventImagePath && (
                                             <img
                                                 src={nextEventImagePath}
@@ -1058,7 +1062,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 className={`absolute inset-0 size-full object-cover ${isGrandAlumniReunion ? 'transition duration-700 motion-safe:group-hover:scale-[1.025] motion-reduce:transition-none' : ''}`}
                                             />
                                         )}
-                                        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,13,47,0.96),rgba(0,24,96,0.52))]" />
+                                        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(2,6,23,0.97),rgba(8,47,73,0.58))]" />
                                         <div className="relative flex h-full flex-col justify-between">
                                             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold tracking-[0.16em] uppercase backdrop-blur">
                                                 <CalendarDays
@@ -1106,7 +1110,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                         </div>
                                     </article>
 
-                                    <div className="rounded-3xl border border-brand-border bg-white p-6 shadow-[0_12px_35px_rgba(0,48,144,0.06)] sm:p-8">
+                                    <div className="rounded-3xl border border-brand-border bg-card p-6 shadow-[0_12px_35px_rgba(15,23,42,0.06)] sm:p-8">
                                         <div className="flex items-center justify-between gap-4">
                                             <div>
                                                 <p className="text-xs font-bold tracking-[0.18em] text-brand-accent uppercase">
@@ -1117,7 +1121,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 </h3>
                                             </div>
                                             <BellRing
-                                                className="size-7 text-brand-primary"
+                                                className="size-7 text-brand-accent"
                                                 aria-hidden="true"
                                             />
                                         </div>
@@ -1129,7 +1133,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                         className="py-5 first:pt-0 last:pb-0"
                                                     >
                                                         <div className="flex items-center gap-3 text-xs font-bold tracking-wide text-brand-text-muted uppercase">
-                                                            <span className="text-brand-primary">
+                                                            <span className="text-brand-accent">
                                                                 {
                                                                     notice.category
                                                                 }
@@ -1175,17 +1179,17 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                         <m.section
                             {...revealMotion('right', shouldReduceMotion, 0.04)}
                             id="testimonials"
-                            className="scroll-mt-24 bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+                            className="scroll-mt-24 bg-card px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
                         >
                             <div className="mx-auto max-w-7xl">
                                 <div>
                                     <div>
-                                        <p className="inline-flex rounded-full bg-[#edf8ec] px-3 py-1 text-[0.68rem] font-extrabold tracking-[0.14em] text-[#288536] uppercase">
+                                        <p className="inline-flex rounded-full bg-brand-success/10 px-3 py-1 text-[0.68rem] font-extrabold tracking-[0.14em] text-brand-success uppercase">
                                             Voices of our alumni
                                         </p>
                                         <h2 className="mt-4 max-w-3xl font-serif text-3xl leading-tight font-bold tracking-tight text-brand-primary-strong sm:text-4xl lg:text-5xl">
                                             We Are{' '}
-                                            <span className="text-[#30933f]">
+                                            <span className="text-brand-success">
                                                 Proud
                                             </span>{' '}
                                             to Be DMHMA Alumni
@@ -1200,17 +1204,212 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                     gap={20}
                                     className="mt-7"
                                 />
+                            </div>
+                        </m.section>
 
+                        <m.section
+                            {...revealMotion('up', shouldReduceMotion, 0.05)}
+                            id="donate"
+                            className="relative isolate scroll-mt-24 overflow-hidden bg-brand-background px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
+                        >
+                            <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_8%_16%,rgba(14,165,233,0.12),transparent_24%),radial-gradient(circle_at_92%_84%,rgba(15,23,42,0.08),transparent_25%)]" />
+                            <div className="pointer-events-none absolute top-12 left-1/2 -z-10 h-32 w-[min(90%,72rem)] -translate-x-1/2 bg-[radial-gradient(circle,rgba(14,165,233,0.18)_1px,transparent_1px)] [mask-image:linear-gradient(to_right,transparent,black_20%,black_80%,transparent)] bg-[size:18px_18px] opacity-45" />
+
+                            <div className="mx-auto max-w-7xl">
+                                <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                                    <div>
+                                        <p className="inline-flex items-center gap-2 rounded-full border border-brand-primary/30 bg-card px-3.5 py-2 text-[0.68rem] font-extrabold tracking-[0.16em] text-brand-accent uppercase shadow-sm">
+                                            <Heart
+                                                className="size-3.5 fill-brand-accent/15"
+                                                aria-hidden="true"
+                                            />
+                                            A legacy of giving
+                                        </p>
+                                        <h2 className="mt-5 max-w-2xl font-serif text-3xl leading-tight font-bold tracking-tight text-brand-text sm:text-4xl lg:text-5xl">
+                                            Turn gratitude into{' '}
+                                            <span className="text-brand-primary-strong">
+                                                lasting opportunity.
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <div className="lg:pb-1 lg:pl-8">
+                                        <p className="max-w-2xl text-base leading-7 text-brand-text-muted sm:text-lg sm:leading-8">
+                                            Give back to the community that
+                                            helped shape us. Every contribution
+                                            can open doors, strengthen alumni
+                                            initiatives, and help DMHMA care for
+                                            its wider family.
+                                        </p>
+                                        <div className="mt-5 flex flex-wrap gap-2.5">
+                                            {[
+                                                'Alumni-led priorities',
+                                                'Purpose-based giving',
+                                                'Direct confirmation',
+                                            ].map((item) => (
+                                                <span
+                                                    key={item}
+                                                    className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-card px-3 py-1.5 text-xs font-bold text-brand-text shadow-sm"
+                                                >
+                                                    <Check
+                                                        className="size-3.5 text-brand-success"
+                                                        strokeWidth={3}
+                                                        aria-hidden="true"
+                                                    />
+                                                    {item}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-10 overflow-hidden rounded-[2rem] border border-brand-primary/25 bg-card shadow-[0_28px_80px_rgba(15,23,42,0.13)] lg:grid lg:grid-cols-[1.16fr_0.84fr]">
+                                    <div className="relative isolate overflow-hidden bg-[linear-gradient(145deg,#020617_0%,#0f172a_52%,#0c4a6e_100%)] px-6 py-9 text-white sm:px-9 sm:py-11 lg:px-12 lg:py-14">
+                                        <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_88%_12%,rgba(56,189,248,0.32),transparent_25%),radial-gradient(circle_at_4%_100%,rgba(14,165,233,0.28),transparent_30%)]" />
+                                        <div className="pointer-events-none absolute -right-14 -bottom-20 -z-10 size-72 rounded-full border-[44px] border-white/6" />
+
+                                        <div className="flex size-13 items-center justify-center rounded-2xl border border-white/18 bg-white/12 shadow-lg backdrop-blur-sm">
+                                            <HandCoins
+                                                className="size-6"
+                                                aria-hidden="true"
+                                            />
+                                        </div>
+                                        <p className="mt-7 text-xs font-extrabold tracking-[0.2em] text-white/65 uppercase">
+                                            Your gift can support
+                                        </p>
+
+                                        <div className="mt-5 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                                            {[
+                                                {
+                                                    title: 'Student opportunity',
+                                                    description:
+                                                        'Help remove barriers for promising learners.',
+                                                    icon: GraduationCap,
+                                                },
+                                                {
+                                                    title: 'Community care',
+                                                    description:
+                                                        'Stand beside members when support matters most.',
+                                                    icon: HeartHandshake,
+                                                },
+                                                {
+                                                    title: 'Alumni initiatives',
+                                                    description:
+                                                        'Strengthen programs that keep generations connected.',
+                                                    icon: UsersRound,
+                                                },
+                                            ].map((item) => {
+                                                const ImpactIcon = item.icon;
+
+                                                return (
+                                                    <article
+                                                        key={item.title}
+                                                        className="rounded-2xl border border-white/12 bg-white/8 p-4 backdrop-blur-sm"
+                                                    >
+                                                        <ImpactIcon
+                                                            className="size-5 text-sky-200"
+                                                            aria-hidden="true"
+                                                        />
+                                                        <h3 className="mt-4 text-sm font-extrabold text-white">
+                                                            {item.title}
+                                                        </h3>
+                                                        <p className="mt-2 text-xs leading-5 text-white/68">
+                                                            {item.description}
+                                                        </p>
+                                                    </article>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <div className="mt-7 flex items-start gap-3 border-t border-white/12 pt-6 text-sm leading-6 text-white/72">
+                                            <ShieldCheck
+                                                className="mt-0.5 size-5 shrink-0 text-sky-200"
+                                                aria-hidden="true"
+                                            />
+                                            <p>
+                                                An association representative
+                                                will confirm the purpose and
+                                                approved payment details with
+                                                you directly before you
+                                                contribute.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col justify-center px-6 py-9 sm:px-9 sm:py-11 lg:px-10 lg:py-14 xl:px-12">
+                                        <span className="flex size-12 items-center justify-center rounded-2xl bg-brand-surface-soft text-brand-primary-strong ring-1 ring-brand-primary/10">
+                                            <Heart
+                                                className="size-5 fill-brand-primary/10"
+                                                aria-hidden="true"
+                                            />
+                                        </span>
+                                        <p className="mt-6 text-xs font-extrabold tracking-[0.18em] text-brand-accent uppercase">
+                                            Give with confidence
+                                        </p>
+                                        <h3 className="mt-3 font-serif text-2xl leading-tight font-bold text-brand-text sm:text-3xl">
+                                            Start with a conversation.
+                                        </h3>
+                                        <p className="mt-4 text-sm leading-6 text-brand-text-muted sm:text-base sm:leading-7">
+                                            Tell us what you would like your
+                                            gift to support. Our donation desk
+                                            will guide you through the verified
+                                            next steps.
+                                        </p>
+
+                                        <div className="mt-7 grid gap-3">
+                                            <a
+                                                href="mailto:admin@dmhma.edu.bd?subject=I%20would%20like%20to%20support%20DMHMA"
+                                                className={`${focusRing} group inline-flex min-h-13 items-center justify-center gap-3 rounded-xl bg-primary px-6 text-sm font-extrabold text-primary-foreground shadow-[0_12px_30px_rgba(14,165,233,0.24)] transition hover:bg-sky-400 motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                            >
+                                                Donate Now
+                                                <ArrowRight
+                                                    className="size-4 transition motion-safe:group-hover:translate-x-1 motion-reduce:transition-none"
+                                                    aria-hidden="true"
+                                                />
+                                            </a>
+                                            <a
+                                                href="https://wa.me/8801712760903?text=Hello%20DMHMA%20Alumni%20Association%2C%20I%20would%20like%20to%20make%20a%20donation."
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                aria-label="Contact the donation desk on WhatsApp at +880 1712-760903"
+                                                className={`${focusRing} inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-brand-border bg-card px-6 text-sm font-bold text-brand-text transition hover:border-brand-primary/60 hover:bg-brand-surface-soft motion-reduce:transition-none`}
+                                            >
+                                                <MessageCircle
+                                                    className="size-4 text-brand-success"
+                                                    aria-hidden="true"
+                                                />
+                                                WhatsApp +880 1712-760903
+                                            </a>
+                                        </div>
+
+                                        <p className="mt-5 flex items-center justify-center gap-2 text-center text-xs leading-5 text-brand-text-muted">
+                                            <ShieldCheck
+                                                className="size-3.5 shrink-0 text-brand-success"
+                                                aria-hidden="true"
+                                            />
+                                            No payment is collected on this
+                                            page.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </m.section>
+
+                        <m.section
+                            {...revealMotion('scale', shouldReduceMotion, 0.08)}
+                            aria-labelledby="final-cta-title"
+                            className="bg-card px-4 py-10"
+                        >
+                            <div className="mx-auto max-w-7xl">
                                 <m.div
                                     {...revealMotion(
                                         'scale',
                                         shouldReduceMotion,
                                         0.12,
                                     )}
-                                    className="mt-10 overflow-hidden rounded-2xl bg-brand-primary-strong text-white shadow-[0_22px_55px_rgba(0,24,96,0.24)]"
+                                    className="mt-10 overflow-hidden rounded-2xl bg-slate-950 text-white shadow-[0_22px_55px_rgba(15,23,42,0.28)]"
                                 >
                                     <div className="relative isolate grid gap-8 px-6 py-10 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center lg:px-14 lg:py-11">
-                                        <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_78%_35%,rgba(0,120,240,0.55),transparent_28%),linear-gradient(105deg,#00184f_0%,#003090_62%,#064188_100%)]" />
+                                        <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_78%_35%,rgba(14,165,233,0.45),transparent_28%),linear-gradient(105deg,#020617_0%,#0f172a_62%,#0c4a6e_100%)]" />
                                         <img
                                             src="/images/dmhma-alumni-logo.png"
                                             alt=""
@@ -1219,7 +1418,10 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                             className="pointer-events-none absolute top-1/2 right-8 -z-10 hidden size-72 -translate-y-1/2 object-contain opacity-[0.09] md:block"
                                         />
                                         <div>
-                                            <h2 className="font-serif text-3xl leading-tight font-bold sm:text-4xl">
+                                            <h2
+                                                id="final-cta-title"
+                                                className="font-serif text-3xl leading-tight font-bold sm:text-4xl"
+                                            >
                                                 Be a Part of Something Greater
                                             </h2>
                                             <p className="mt-3 max-w-xl text-sm leading-6 text-white/72 sm:text-base">
@@ -1237,7 +1439,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                         ? dashboard()
                                                         : register()
                                                 }
-                                                className={`${focusRing} group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#43a33e] px-7 text-sm font-extrabold text-white shadow-lg transition hover:bg-[#378c34] motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                                className={`${focusRing} group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-primary px-7 text-sm font-extrabold text-primary-foreground shadow-lg transition hover:bg-sky-400 motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
                                             >
                                                 {auth.user
                                                     ? 'Open Dashboard'
@@ -1249,7 +1451,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                             </Link>
                                             <a
                                                 href="#community"
-                                                className={`${focusRing} inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-7 text-sm font-extrabold text-brand-primary shadow-lg transition hover:bg-brand-secondary motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
+                                                className={`${focusRing} inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-7 text-sm font-extrabold text-sky-800 shadow-lg transition hover:bg-sky-50 motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none`}
                                             >
                                                 Our Community
                                                 <Heart
@@ -1266,15 +1468,15 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
 
                     <m.footer
                         {...revealMotion('scale', shouldReduceMotion, 0.04)}
-                        className="relative overflow-hidden border-t border-brand-accent/35 bg-[#001a4d] text-white"
+                        className="relative overflow-hidden border-t border-slate-800 bg-slate-950 text-white"
                     >
-                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(0,120,240,0.18),transparent_32%)]" />
+                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(14,165,233,0.16),transparent_32%)]" />
                         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-16 md:grid-cols-2 md:gap-x-12 xl:grid-cols-[1.15fr_0.75fr_0.75fr_1.05fr_1.1fr] xl:gap-0 xl:px-8 xl:py-18">
                             <section className="md:col-span-2 xl:col-span-1 xl:pr-9">
                                 <Link
                                     href={home()}
                                     aria-label="DMHMA Alumni Association home"
-                                    className={`${focusRing} inline-flex rounded-xl ring-offset-[#001a4d]`}
+                                    className={`${focusRing} inline-flex rounded-xl ring-offset-slate-950`}
                                 >
                                     <BrandMark light />
                                 </Link>
@@ -1319,7 +1521,7 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                 target="_blank"
                                                 rel="noreferrer"
                                                 aria-label={`Find DMHMA Alumni Association on ${social.label}`}
-                                                className={`${focusRing} flex size-9 items-center justify-center rounded-full border border-white/16 bg-white/6 text-white/72 transition hover:border-brand-accent/70 hover:bg-brand-accent hover:text-white motion-reduce:transition-none`}
+                                                className={`${focusRing} flex size-9 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-300 transition hover:border-sky-400 hover:bg-sky-500 hover:text-slate-950 motion-reduce:transition-none`}
                                             >
                                                 <SocialIcon
                                                     className="size-4"
@@ -1491,13 +1693,13 @@ export default function Welcome({ stats, notices, nextEvent }: WelcomeProps) {
                                                             : undefined
                                                     }
                                                     aria-describedby="newsletter-status"
-                                                    className={`${focusRing} min-h-11 min-w-0 flex-1 rounded-lg border border-white/16 bg-white px-3.5 text-sm text-brand-text ring-offset-[#001a4d] placeholder:text-brand-text-muted/70`}
+                                                    className={`${focusRing} min-h-11 min-w-0 flex-1 rounded-lg border border-slate-300 bg-slate-50 px-3.5 text-sm text-slate-950 ring-offset-slate-950 placeholder:text-slate-500`}
                                                 />
                                                 <button
                                                     type="submit"
                                                     disabled={processing}
                                                     aria-label="Subscribe to the DMHMA alumni newsletter"
-                                                    className={`${focusRing} flex size-11 shrink-0 items-center justify-center rounded-lg bg-[#3da43a] text-white shadow-lg transition hover:bg-[#349032] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none`}
+                                                    className={`${focusRing} flex size-11 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-lg transition hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none`}
                                                 >
                                                     <Send
                                                         className="size-4"

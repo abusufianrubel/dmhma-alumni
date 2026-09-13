@@ -632,7 +632,7 @@ export default function Membership() {
     const validUntilDate = addYears(createdAt, 1);
     const memberSince = formatDate(createdAt);
     const validUntil = formatDate(validUntilDate);
-    const memberId = `DMHMA-${createdAt.getFullYear()}-${String(user.id).padStart(4, '0')}`;
+    const memberId = user.profile?.member_id ?? 'Pending';
 
     return (
         <>

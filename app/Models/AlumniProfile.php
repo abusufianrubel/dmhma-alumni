@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property int|null $batch_year
+ * @property int|null $batch_serial
+ * @property string|null $member_id
+ */
 class AlumniProfile extends Model
 {
     /** @use HasFactory<AlumniProfileFactory> */
@@ -38,10 +43,12 @@ class AlumniProfile extends Model
 
     protected $casts = [
         'batch_year' => 'integer',
+        'batch_serial' => 'integer',
         'date_of_birth' => 'date',
         'is_verified' => 'boolean',
     ];
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

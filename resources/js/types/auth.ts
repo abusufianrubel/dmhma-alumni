@@ -7,6 +7,11 @@ export type User = {
     two_factor_enabled?: boolean;
     created_at: string;
     updated_at: string;
+    profile?: {
+        batch_year: number | null;
+        batch_serial: number | null;
+        member_id: string | null;
+    } | null;
     [key: string]: unknown;
 };
 

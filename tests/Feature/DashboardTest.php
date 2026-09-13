@@ -17,7 +17,10 @@ test('authenticated users can visit the dashboard', function () {
         ->component('dashboard')
         ->where('auth.user.id', $user->id)
         ->where('auth.user.name', $user->name)
+        ->where('auth.user.profile', null)
         ->has('auth.user.created_at')
+        ->where('batchYears.0', (int) now()->year)
+        ->where('batchYears.'.((int) now()->year - 1999), 1999)
         ->etc()
     );
 });

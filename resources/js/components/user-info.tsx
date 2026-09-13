@@ -12,7 +12,7 @@ export function UserInfo({
 
     return (
         <>
-            <Avatar className="h-8 w-8 overflow-hidden rounded-full border border-[#e4e9f0] bg-white">
+            <Avatar className="h-8 w-8 overflow-hidden rounded-full border border-border bg-card">
                 <AvatarImage
                     src={avatarSource}
                     alt={user.name}

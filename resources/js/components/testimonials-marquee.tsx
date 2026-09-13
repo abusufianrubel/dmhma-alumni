@@ -50,11 +50,11 @@ function TestimonialCard({ testimonial }: { testimonial: TestimonialItem }) {
                           ease: [0.22, 1, 0.36, 1],
                       }
             }
-            className="group relative flex min-h-64 w-[min(82vw,22rem)] shrink-0 flex-col justify-between rounded-2xl border border-brand-border/80 bg-white p-6 shadow-[0_12px_35px_rgba(0,48,144,0.07)] transition-[box-shadow,border-color] duration-300 ease-out hover:z-10 hover:border-brand-accent/45 hover:shadow-[0_22px_50px_rgba(0,48,144,0.14)] motion-reduce:transition-none sm:w-[22rem] sm:p-7 lg:w-[24rem]"
+            className="group relative flex min-h-64 w-[min(82vw,22rem)] shrink-0 flex-col justify-between rounded-2xl border border-brand-border/80 bg-card p-6 shadow-[0_12px_35px_rgba(15,23,42,0.07)] transition-[box-shadow,border-color] duration-300 ease-out hover:z-10 hover:border-brand-primary/60 hover:shadow-[0_22px_50px_rgba(14,165,233,0.14)] motion-reduce:transition-none sm:w-[22rem] sm:p-7 lg:w-[24rem]"
         >
             <div>
                 <Quote
-                    className="size-6 fill-brand-primary text-brand-primary transition duration-300 ease-out group-hover:fill-brand-accent/20 group-hover:text-brand-accent motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-6 motion-reduce:transition-none"
+                    className="size-6 fill-brand-primary/20 text-brand-accent transition duration-300 ease-out group-hover:fill-brand-primary/30 group-hover:text-brand-accent-strong motion-safe:group-hover:scale-110 motion-safe:group-hover:-rotate-6 motion-reduce:transition-none"
                     aria-hidden="true"
                 />
                 <blockquote className="mt-4 text-sm leading-7 font-medium text-brand-text sm:text-[0.95rem]">

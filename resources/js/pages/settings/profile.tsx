@@ -36,6 +36,7 @@ import type { Auth } from '@/types';
 
 type AlumniProfile = {
     batch_year: number | null;
+    member_id: string | null;
     student_id: string | null;
     nickname: string | null;
     father_name: string | null;
@@ -205,7 +206,7 @@ export default function Profile({
     const { user } = usePage<PageProps>().props.auth;
     const dateOfBirthInputRef = useRef<HTMLInputElement>(null);
     const avatarSource = user.avatar ?? '/storage/avatars/avatar%20(4).jpg';
-    const memberId = profile?.student_id ?? `DMHMA-${user.id}`;
+    const memberId = profile?.member_id ?? 'Pending';
     const memberSince = formatDate(user.created_at);
     const completionItems = [
         { label: 'Basic Information', complete: Boolean(user.name) },

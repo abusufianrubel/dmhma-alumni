@@ -32,7 +32,7 @@ export function NavMain({ items = [] }: { items: SidebarNavItem[] }) {
                                 {item.title}
                             </span>
                             {item.badge && (
-                                <span className="ml-auto flex size-5 items-center justify-center rounded bg-[#36bd35] text-[11px] leading-none font-semibold text-white group-data-[collapsible=icon]:hidden">
+                                <span className="ml-auto flex size-5 items-center justify-center rounded bg-sky-500 text-[11px] leading-none font-semibold text-slate-950 group-data-[collapsible=icon]:hidden">
                                     {item.badge}
                                 </span>
                             )}
@@ -51,7 +51,7 @@ export function NavMain({ items = [] }: { items: SidebarNavItem[] }) {
                                 asChild
                                 isActive={isActive}
                                 tooltip={{ children: item.title }}
-                                className="h-[42px] gap-3 rounded-[8px] px-3 text-[13px] font-medium text-blue-50 group-data-[collapsible=icon]:mx-auto group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0! hover:bg-white/[0.08] hover:text-white focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-inset active:bg-white/[0.14] aria-disabled:opacity-100 data-[active=true]:bg-[#0547b8] data-[active=true]:font-semibold data-[active=true]:text-white data-[active=true]:shadow-none data-[active=true]:hover:bg-[#0547b8] data-[active=true]:active:bg-[#043fa6] [&>svg]:size-[19px] [&>svg]:stroke-[1.8]"
+                                className="h-[42px] gap-3 rounded-[8px] px-3 text-[13px] font-medium text-slate-300 group-data-[collapsible=icon]:mx-auto group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:p-0! hover:bg-slate-800 hover:text-white focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-inset active:bg-slate-700 aria-disabled:opacity-100 data-[active=true]:bg-sky-500 data-[active=true]:font-semibold data-[active=true]:text-slate-950 data-[active=true]:shadow-none data-[active=true]:hover:bg-sky-400 data-[active=true]:active:bg-sky-600 [&>svg]:size-[19px] [&>svg]:stroke-[1.8]"
                             >
                                 {item.href ? (
                                     <Link href={item.href} prefetch>

@@ -54,13 +54,13 @@ const mainNavItems: SidebarNavItem[] = [
 export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" variant="sidebar" className="border-0">
-            <div className="flex h-full min-h-0 flex-col bg-[linear-gradient(180deg,#00153d_0%,#002d63_100%)] text-white">
+            <div className="flex h-full min-h-0 flex-col bg-[linear-gradient(180deg,#020617_0%,#0f172a_100%)] text-slate-100">
                 <SidebarHeader className="h-[88px] shrink-0 justify-center px-4 py-3 group-data-[collapsible=icon]:px-2">
                     <Link
                         href={dashboard()}
                         prefetch
                         aria-label="DMHMA Alumni Association dashboard"
-                        className="flex items-center gap-3 overflow-hidden rounded-lg outline-none group-data-[collapsible=icon]:justify-center focus-visible:ring-2 focus-visible:ring-blue-300"
+                        className="flex items-center gap-3 overflow-hidden rounded-lg outline-none group-data-[collapsible=icon]:justify-center focus-visible:ring-2 focus-visible:ring-sky-400"
                     >
                         <img
                             src="/images/dmhma-alumni-logo.png"
@@ -71,7 +71,7 @@ export function AppSidebar() {
                             <span className="block text-[20px] font-bold tracking-[0.01em] whitespace-nowrap">
                                 DMHMA
                             </span>
-                            <span className="mt-0.5 block text-xs font-medium whitespace-nowrap text-blue-100">
+                            <span className="mt-0.5 block text-xs font-medium whitespace-nowrap text-slate-300">
                                 Alumni Association
                             </span>
                         </span>
@@ -83,23 +83,23 @@ export function AppSidebar() {
                 </SidebarContent>
 
                 <SidebarFooter className="shrink-0 p-3 pt-2 group-data-[collapsible=icon]:hidden">
-                    <div className="rounded-lg border border-blue-500/30 bg-[linear-gradient(135deg,rgba(38,49,135,0.96),rgba(45,43,151,0.96))] p-4 shadow-[0_12px_28px_rgba(0,0,0,0.18)]">
+                    <div className="rounded-lg border border-slate-700 bg-slate-900 p-4 shadow-[0_12px_28px_rgba(0,0,0,0.22)]">
                         <p className="text-sm font-semibold text-white">
                             Annual Reunion 2025
                         </p>
-                        <p className="mt-2 text-xs text-blue-50">
+                        <p className="mt-2 text-xs text-slate-300">
                             Join us on 20 June 2025
                         </p>
                         <div className="mt-4 flex items-end justify-between gap-3">
                             <button
                                 type="button"
-                                className="h-9 rounded-md bg-white px-4 text-xs font-semibold text-[#0754c9] shadow-sm transition-colors hover:bg-blue-50 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+                                className="h-9 rounded-md bg-sky-500 px-4 text-xs font-semibold text-slate-950 shadow-sm transition-colors hover:bg-sky-400 focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:outline-none"
                             >
                                 Register Now
                             </button>
                             <CalendarClock
                                 aria-hidden="true"
-                                className="size-6 text-amber-400"
+                                className="size-6 text-sky-400"
                             />
                         </div>
                     </div>

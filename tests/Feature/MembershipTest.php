@@ -10,7 +10,7 @@ test('guests are redirected to the login page', function () {
 });
 
 test('authenticated users can visit the membership page', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->hasProfile(['batch_year' => 2012])->create();
 
     $response = $this
         ->actingAs($user)

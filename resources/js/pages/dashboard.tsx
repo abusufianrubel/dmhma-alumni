@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
+import BatchSelectionModal from '@/components/batch-selection-modal';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { dashboard } from '@/routes';
 import { edit as profileEdit } from '@/routes/profile';
@@ -31,7 +32,7 @@ type Tone = 'accent' | 'error' | 'primary' | 'purple' | 'success' | 'warning';
 const toneClasses: Record<Tone, string> = {
     accent: 'bg-brand-accent/10 text-brand-accent',
     error: 'bg-brand-error/10 text-brand-error',
-    primary: 'bg-brand-primary/10 text-brand-primary',
+    primary: 'bg-brand-primary/15 text-brand-accent',
     purple: 'bg-brand-purple/10 text-brand-purple',
     success: 'bg-brand-success/10 text-brand-success',
     warning: 'bg-brand-warning/10 text-brand-warning',
@@ -40,7 +41,7 @@ const toneClasses: Record<Tone, string> = {
 const toneTextClasses: Record<Tone, string> = {
     accent: 'text-brand-accent',
     error: 'text-brand-error',
-    primary: 'text-brand-primary',
+    primary: 'text-brand-accent',
     purple: 'text-brand-purple',
     success: 'text-brand-success',
     warning: 'text-brand-warning',
@@ -132,7 +133,7 @@ function Panel({
                 {action && (
                     <button
                         type="button"
-                        className="text-xs font-semibold text-brand-accent transition-colors hover:text-brand-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                        className="text-xs font-semibold text-brand-accent transition-colors hover:text-brand-accent-strong focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                     >
                         {action}
                     </button>
@@ -207,7 +208,7 @@ function MemberIdentityCard({
                     alt=""
                     className="size-8 object-contain"
                 />
-                <span className="text-xs font-bold text-brand-primary">
+                <span className="text-xs font-bold text-brand-accent">
                     DMHMA Alumni Association
                 </span>
             </div>
@@ -300,7 +301,7 @@ function MembershipOverview({
                 </div>
                 <button
                     type="button"
-                    className="mt-4 flex w-full items-center justify-center gap-2 text-xs font-semibold text-brand-accent transition-colors hover:text-brand-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                    className="mt-4 flex w-full items-center justify-center gap-2 text-xs font-semibold text-brand-accent transition-colors hover:text-brand-accent-strong focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                     <Download className="size-4" aria-hidden="true" />
                     Download Digital Member Card
@@ -356,7 +357,7 @@ function UpcomingEvents() {
                             <button
                                 type="button"
                                 aria-label={`View ${event.title}`}
-                                className="grid size-8 place-items-center rounded-full bg-muted text-brand-primary transition-colors hover:bg-brand-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                                className="grid size-8 place-items-center rounded-full bg-muted text-brand-accent transition-colors hover:bg-brand-secondary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                             >
                                 <ChevronRight className="size-4" />
                             </button>
@@ -402,7 +403,7 @@ function PaymentSummary() {
                 </dl>
                 <button
                     type="button"
-                    className="mt-3 flex h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-primary px-4 text-sm font-bold text-primary-foreground shadow-sm transition-colors hover:bg-brand-primary-strong focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+                    className="mt-3 flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-bold text-primary-foreground shadow-sm transition-colors hover:bg-sky-400 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
                 >
                     <CreditCard className="size-4" aria-hidden="true" />
                     Make a Payment
@@ -465,7 +466,7 @@ function Notifications() {
                     </p>
                     <button
                         type="button"
-                        className="shrink-0 font-semibold text-brand-accent hover:text-brand-primary"
+                        className="shrink-0 font-semibold text-brand-accent hover:text-brand-accent-strong"
                     >
                         View All
                     </button>
@@ -585,18 +586,21 @@ function formatDate(date: Date): string {
     }).format(date);
 }
 
-export default function Dashboard() {
+export default function Dashboard({ batchYears }: { batchYears: number[] }) {
     const { auth } = usePage().props;
     const user = auth.user;
     const avatarSource = user.avatar ?? '/storage/avatars/avatar%20(4).jpg';
     const createdAt = new Date(user.created_at);
     const validUntilDate = new Date(createdAt);
     validUntilDate.setFullYear(validUntilDate.getFullYear() + 1);
-    const memberId = `DMHMA-${createdAt.getFullYear()}-${String(user.id).padStart(4, '0')}`;
+    const memberId = user.profile?.member_id ?? 'Pending';
 
     return (
         <>
             <Head title="Dashboard" />
+            {!user.profile?.batch_year && (
+                <BatchSelectionModal batchYears={batchYears} />
+            )}
             <main className="flex min-h-full flex-1 flex-col bg-background">
                 <div className="flex-1 p-4 sm:p-5 xl:p-6">
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
